@@ -34,7 +34,6 @@
     pinentry
     rbw
     ripgrep
-    tmux
     tree
     unzip
     watch
