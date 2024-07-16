@@ -3,7 +3,6 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    jelly = { url = "github:lucperkins/jelly"; inputs.nixpkgs.follows = "nixpkgs"; };
     fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -28,7 +27,7 @@
 
       stateVersion = "24.05";
       system = "aarch64-darwin";
-      username = "lucperkins";
+      username = "romelben";
       caches = {
         nixos-org = {
           cache = "https://cache.nixos.org";
@@ -72,7 +71,6 @@
         rev = inputs.self.rev or inputs.self.dirtyRev or null;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;
-        jelly = inputs.jelly.packages.${system}.default;
         # uuidv7 = inputs.uuidv7.packages.${system}.default;
       };
 
