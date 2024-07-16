@@ -109,7 +109,6 @@ let
 
   rustTools = with pkgs; [
     bacon
-    rustToolchain
     cargo-edit
     cargo-machete
     cargo-watch
