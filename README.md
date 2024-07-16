@@ -19,6 +19,10 @@ nix build .#darwinConfigurations.romelben-aarch64-darwin.system
 
 2. Once the build is complete, run the below command:
 ```shell
+# Move the /etc/nix/nix.conf
+sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin
+
+# Then activate the build that we did before
 ./result/activate
 ```
 
