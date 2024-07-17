@@ -47,7 +47,7 @@
           let
             reload = pkgs.writeScriptBin "reload" ''
               FLAKE_OUTPUT=".#darwinConfigurations.romelben-aarch64-darwin.system"
-              ${pkgs.nixFlakes}/bin/nix build "''${FLAKE_OUTPUT}" && \
+              ${pkgs.nixFlakes}/bin/nix build "''${FLAKE_OUTPUT}" --extra-experimental-features nix-command && \
                 ./result/sw/bin/darwin-rebuild activate && \
                 ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
             '';
