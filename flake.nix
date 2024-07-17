@@ -81,6 +81,13 @@
           inputs.self.darwinModules.caching
           inputs.home-manager.darwinModules.home-manager
           inputs.self.darwinModules.home-manager
+          {
+            nix = {
+              extraOptions = ''
+                experimental-features = nix-command flakes
+              '';
+            };
+          }
         ];
       };
 
