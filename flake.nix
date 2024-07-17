@@ -54,7 +54,7 @@
             '';
           in
           pkgs.mkShell {
-            name = "nome";
+            name = "playground";
             packages = with pkgs; [
               nixpkgs-fmt
               reload
