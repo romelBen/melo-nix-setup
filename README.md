@@ -29,6 +29,21 @@ nix build .#darwinConfigurations.romelben-aarch64-darwin.system
 With Nix installed and flakes enabled, this is all that I need to run to stand up a new machine according to my exact specifications, including configuration for [Vim](./nix-darwin/home-manager/neovim.nix), [zsh](./nix-darwin/home-manager/zsh.nix), [Visual Studio Code](./nix-darwin/home-manager/vscode.nix), [Git](./nix-darwin/home-manager/git.nix), and more.
 With this approach, this will eliminate [Homebrew] in use from my machine.
 
+### Troubleshooting
+You will more than likely be brought up with an error like so:
+```shell
+error: Unexpected files in /etc, aborting activation
+The following files have unrecognized content and would be overwritten:
+
+  /etc/nix/nix.conf
+
+Please check there is nothing critical in these files, rename them by adding .before-nix-darwin to the end, and then try again.
+```
+
+To fix this issue, run the following command to fix this: `sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin`
+
+The reasoning behind this is there is a bug when running any `nix` command, it will want you to remove it since `nix` is being built from the ground up. However, this error occurs when you use `nix` commands the first time.
+
 ## Acknowledgements
 Great inspiration on utilizing Nix setup is from Luc Perkins in his blog and repository which was a great help:
 - [Building a highly optimized home environment with Nix](https://determinate.systems/posts/nix-home-env/)
