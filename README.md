@@ -9,13 +9,25 @@ This repo encapsulates a range of Nix goodies that I use to declutter and bring 
 Setup your environment:
 Before you move forward, you will receive an error on `--extra-experimental-features` on `nix-command`. What you will need to do the following:
 - Add `experimental-features = nix-command flakes` onto `/etc/nix/nix.conf`
+- Make sure to change the username from `romelben` to your own in the `flake.nix`. This would be located in the root directory.
+
+### Using `nix develop`
+> [!IMPORTANT]
+> `nix develop` (carbon copy of `nix shell`) is more centered on recreating your build environment for single packages. You are dropped into a shell that is as close as possible to the nix builder environment. This is more centered on locally developed pacakges.
+
+Installation process is not as difficult as `nix build`:
+1. Run the following command which will bring you into the shell command of the development:
+```shell
+nix develop --extra-experimental-features nix-command --extra-experimental-features flakes --command reload
+```
+As much as I hate this long name for using `--command reload`, there is an error that pops up because of this. This is where the Troubleshooting section comes in handy to help out but alas, this should stop the error.
 
 ### Using `nix build`
 > [!IMPORTANT]
-> If you are going to use `nix build`, this will do an install to your local workstation of all the packages I have listed. If you are to run build and run `./result/activate`, it will overwrite and install all packages necessary on your local workstation so USE CAUTION when running the command. If you hate your computer and like to live on the edge, do it. If you don't, use a VM or a used Macbook on Craigslist/Ebay to see how it works.
+> `nix build` will do an install to your local workstation of all the packages I have listed. If you are to run build and run `./result/activate`, it will overwrite and install all packages necessary on your local workstation so USE CAUTION when running the command. If you hate your computer and like to live on the edge, do it. If you don't, use a VM or a used Macbook on Craigslist/Ebay to see how it works.
 
 From here this is where the fun begins:
-1. To build the configuration, make sure to change the username from `romelben` to your own. Look in the `flake.nix` in the root directory and change the `username` to your own. Once you change it, run the following:
+1. To build the configuration, run the following:
 ```shell
 nix build .#darwinConfigurations.romelben-aarch64-darwin.system
 ```
