@@ -46,8 +46,7 @@
         default =
           let
             reload = pkgs.writeScriptBin "reload" ''
-              CONFIG_NAME=$(scutil --get LocalHostName)
-              FLAKE_OUTPUT=".#darwinConfigurations.''${CONFIG_NAME}.system"
+              FLAKE_OUTPUT=".#darwinConfigurations.romelben-aarch64-darwin.system"
               ${pkgs.nixFlakes}/bin/nix build "''${FLAKE_OUTPUT}" && \
                 ./result/sw/bin/darwin-rebuild activate && \
                 ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
