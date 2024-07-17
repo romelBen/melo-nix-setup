@@ -5,23 +5,23 @@ This repo encapsulates a range of Nix goodies that I use to declutter and bring 
 - My nix-darwin and Home Manager configuration
 - Shell aliases and helper scripts
 
-### Before You Begin
+## Before You Begin
 Setup your environment:
 Before you move forward, you will receive an error on `--extra-experimental-features` on `nix-command`. What you will need to do the following:
 - Add `experimental-features = nix-command flakes` onto `/etc/nix/nix.conf`
 
+### Using `nix build`
+> [!IMPORTANT]
+> If you are going to use `nix build`, this will do an install to your local workstation of all the packages I have listed. If you are to run build and run `./result/activate`, it will overwrite and install all packages necessary on your local workstation so USE CAUTION when running the command. If you hate your computer and like to live on the edge, do it. If you don't, use a VM or a used Macbook on Craigslist/Ebay to see how it works.
+
 From here this is where the fun begins:
-> [!IMPORTANT] This will take quite a while to build the first time, probably 10-15 minutes. However, once done it is cached and you can update your environment to the way you want.
-1. To build the configuration, make sure the username `romelben` is different from mine. Look in the `flake.nix` in the root directory and change the `username` to your own:
+1. To build the configuration, make sure to change the username from `romelben` to your own. Look in the `flake.nix` in the root directory and change the `username` to your own. Once you change it, run the following:
 ```shell
 nix build .#darwinConfigurations.romelben-aarch64-darwin.system
 ```
 
-2. Once the build is complete, run the below command:
+2. After building, run the followin below:
 ```shell
-# Move the /etc/nix/nix.conf
-sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin
-
 # Then activate the build that we did before
 ./result/activate
 ```
