@@ -56,6 +56,15 @@ To fix this issue, run the following command to fix this: `sudo mv /etc/nix/nix.
 
 The reasoning behind this is there is a bug when running any `nix` command, it will want you to remove it since `nix` is being built from the ground up. However, this error occurs when you use `nix` commands the first time.
 
+## Testing
+For testing purposes in Mac, it will be best to use [UTM](https://getutm.app) and setup an environment similar to your own for macOS:
+1. Install [UTM](https://getutm.app)
+2. Download [macOS IPSW recovery file](https://ipsw.me/product/Mac)
+3. Create a macOS VM in UTM using the downloaded IPSW file
+4. Run `xcode-select --install` in the new VM
+5. (Optional) Clone the VM to a new one for easy rollback ([UTM doesn't support snapshot yet](https://github.com/utmapp/UTM/issues/2688))
+6. Run the above commands of your choice: [nix build](#using-nix-build) or [nix develop](#using-nix-develop).
+
 ## Acknowledgements
 Great inspiration on utilizing Nix setup is from Luc Perkins in his blog and repository which was a great help:
 - [Building a highly optimized home environment with Nix](https://determinate.systems/posts/nix-home-env/)
