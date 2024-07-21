@@ -6,10 +6,8 @@ This repo encapsulates a range of Nix goodies that I use to declutter and bring 
 - Shell aliases and helper scripts
 
 ## Before You Begin
-Setup your environment:
-Before you move forward, you will receive an error on `--extra-experimental-features` on `nix-command`. What you will need to do the following:
-- Add `experimental-features = nix-command flakes` onto `/etc/nix/nix.conf`
-- Make sure to change the username from `romelben` to your own in the `flake.nix`. This would be located in the root directory.
+You must change the following:
+- Change the username and hostname to your specs in `flake.nix` and `./home-manager/*.nix`. Username would be your name you have assigned to your local computer and hostname is already done but to understand what is being pulled, run the following command: `hostname -s` or `scutil --get LocalHostName`.
 
 ### Using `nix develop`
 > [!IMPORTANT]

@@ -46,8 +46,9 @@
         default =
           let
             reload = pkgs.writeScriptBin "reload" ''
-              FLAKE_OUTPUT=".#darwinConfigurations.romelbenavides-aarch64-darwin.system"
-              ${pkgs.nixFlakes}/bin/nix build "''${FLAKE_OUTPUT}" --extra-experimental-features nix-command --extra-experimental-features flakes && \
+              CONFIG_NAME=$(scutil --get LocalHostName)
+              FLAKE_OUTPUT=".#darwinConfigurations.''${CONFIG_NAME}.system"
+              ${pkgs.nixFlakes}/bin/nix build "''${FLAKE_OUTPUT}" && \
                 ./result/sw/bin/darwin-rebuild activate && \
                 ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
             '';
