@@ -30,6 +30,3 @@ default: build
 ### This will be for ARM Mac computers with "aarch64".
 build: /nix /run/current-system/sw/bin/darwin-rebuild /opt/homebrew/bin/brew ~/.git
 	/run/current-system/sw/bin/nix --experimental-features 'nix-command flakes' develop --command reload
-
-update:
-	nix flake update
