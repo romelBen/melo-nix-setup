@@ -12,7 +12,7 @@ You must change the following:
 ## Setup Nix On Local Workstation
 To make life easier, I created a Makefile to install the pre-requisites necessary for your local workstation:
 ```sh
-https://github.com/romelBen/melo-nix-setup.git melo-nix-setup
+git clone https://github.com/romelBen/melo-nix-setup.git melo-nix-setup
 cd melo-nix-setup
 make
 ```
