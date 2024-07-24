@@ -8,11 +8,11 @@
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1.*";
     home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2405.*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nix.url = "https://flakehub.com/f/DeterminateSystems/nix/=2.23.1";
+    nix.url = "https://flakehub.com/f/DeterminateSystems/nix/=2.23.3";
     nix-darwin = { url = "github:LnL7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2405.*";
     nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    # uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; inputs.nixpkgs.follows = "nixpkgs"; };
+    uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
 
   outputs = inputs:
@@ -27,7 +27,7 @@
 
       stateVersion = "24.05";
       system = "aarch64-darwin";
-      username = "romelbenavides";
+      username = "lucperkins";
       caches = {
         nixos-org = {
           cache = "https://cache.nixos.org";
@@ -46,15 +46,15 @@
         default =
           let
             reload = pkgs.writeScriptBin "reload" ''
-              #CONFIG_NAME=$(scutil --get LocalHostName)
-              FLAKE_OUTPUT=".#darwinConfigurations.${username}-aarch64-darwin.system"
+              CONFIG_NAME=$(scutil --get LocalHostName)
+              FLAKE_OUTPUT=".#darwinConfigurations.''${CONFIG_NAME}.system"
               ${pkgs.nixFlakes}/bin/nix build "''${FLAKE_OUTPUT}" && \
                 ./result/sw/bin/darwin-rebuild activate && \
                 ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
             '';
           in
           pkgs.mkShell {
-            name = "playground";
+            name = "romelbenavides";
             packages = with pkgs; [
               nixpkgs-fmt
               reload
@@ -71,7 +71,7 @@
         rev = inputs.self.rev or inputs.self.dirtyRev or null;
         flake-checker = inputs.flake-checker.packages.${system}.default;
         fh = inputs.fh.packages.${system}.default;
-        # uuidv7 = inputs.uuidv7.packages.${system}.default;
+        uuidv7 = inputs.uuidv7.packages.${system}.default;
       };
 
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {

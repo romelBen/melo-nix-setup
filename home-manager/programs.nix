@@ -38,7 +38,8 @@
     enable = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;
-    nix-direnv.enable = true;
+    # Re-enable when Nix versioning issue is sorted
+    #nix-direnv.enable = true;
   };
 
   # Replacement for ls
@@ -94,6 +95,8 @@
 
   # The provider of my shell aesthetic
   starship = import ./starship.nix { inherit pkgs; };
+
+  tmux = import ./tmux.nix;
 
   # My most-used editor
   vscode = import ./vscode.nix { inherit pkgs; };

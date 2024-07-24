@@ -86,13 +86,13 @@ let
     cue
     elixir
     elixir-ls
-    jelly
     mprocs
     neofetch
     ngrok
     process-compose
     protobuf
-    # uuidv7
+    reattach-to-user-namespace # for tmux
+    uuidv7
     yt-dlp
   ];
 
@@ -106,14 +106,6 @@ let
   pythonTools = with pkgs; [ python311 ] ++ (with pkgs.python311Packages; [
     httpie
   ]);
-
-  rustTools = with pkgs; [
-    bacon
-    cargo-edit
-    cargo-machete
-    cargo-watch
-    rust-analyzer
-  ];
 
   scripts = with pkgs; [
     (writeScriptBin "pk" ''
