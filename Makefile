@@ -19,14 +19,14 @@ default: build
 ~/.ssh/id_ed25519:
 	ssh-keygen -t ed25519 -f "$@"
 
-~/.git: ~/.ssh/id_ed25519
-	cd ~ \
-		&& git init \
-		&& git config status.showUntrackedFiles no \
-		&& git remote add origin https://github.com/romelben/dotfiles \
-		&& git pull origin master \
-		&& git remote set-url origin git@github.com:romelben/dotfiles
+# ~/.git: ~/.ssh/id_ed25519
+# 	cd ~ \
+# 		&& git init \
+# 		&& git config status.showUntrackedFiles no \
+# 		&& git remote add origin https://github.com/romelben/dotfiles \
+# 		&& git pull origin master \
+# 		&& git remote set-url origin git@github.com:romelben/dotfiles
 
 ### This will be for ARM Mac computers with "aarch64".
-build: /nix /run/current-system/sw/bin/darwin-rebuild /opt/homebrew/bin/brew ~/.git
+build: /nix /run/current-system/sw/bin/darwin-rebuild /opt/homebrew/bin/brew
 	/run/current-system/sw/bin/nix --experimental-features 'nix-command flakes' develop --command reload

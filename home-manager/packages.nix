@@ -143,7 +143,6 @@ basic
 ++ misc
 ++ nixTools
 ++ pythonTools
-++ rustTools
 ++ scripts
 ++ security
 ++ docsTools
