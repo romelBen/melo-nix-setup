@@ -10,6 +10,8 @@ You must change the following:
 - Change the username and hostname to your specs in `flake.nix` and `./home-manager/*.nix`. Username would be your name you have assigned to your local computer and hostname is already done but to understand what is being pulled, run the following command: `hostname -s` or `scutil --get LocalHostName`.
 
 ## Setup Nix On Local Workstation
+> [!NOTE]
+> For your first install, this will take around 10-15 minutes to setup so grab a drink and some popcorn as it runs it's process.
 To make life easier, I created a Makefile to install the pre-requisites necessary for your local workstation:
 ```sh
 git clone https://github.com/romelBen/melo-nix-setup.git melo-nix-setup
