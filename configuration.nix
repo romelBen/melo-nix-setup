@@ -5,8 +5,8 @@
   # $ nix-env -qaP | grep curl
   environment.systemPackages = with pkgs; [
     aria
+    asdf-vm
     bat
-    cargo
     colima
     coreutils
     curl
@@ -37,7 +37,6 @@
     tree
     unzip
     watch
-    zoxide
 
     # Language server
     lua-language-server

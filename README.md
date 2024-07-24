@@ -21,18 +21,16 @@ With Nix installed and flakes enabled, this is all that I need to run to stand u
 With this approach, this will eliminate [Homebrew] in use from my machine.
 
 ## Troubleshooting
-You will receive an error in regards to `experimental-features = nix-command flakes` when running `make`. This is something I fixing currently so this will soon be removed. To fix this issue, all that is needed is to run the following:
+You will receive an error when running the command `make`:
+```sh
+error: experimental Nix feature 'nix-command' is disabled; use '--extra-experimental-features nix-command'; to override
+```
+This is something I am fixing currently so this will soon be removed. To fix this issue, all that is needed to run is the following command:
 ```shell
 echo "experimental-features = nix-command flakes" | sudo tee /etc/nix/nix.conf
 ```
 
 Once ran, rerun `make` and you should be good as new.
-
-## Things To Do
-Still need to add/configure/remove programs:
-- [] Remove homebrew, docker, and more
-- [] Add k9s, rancher desktop, asdf, and more
-- [] Fix layout of icons at the bottom of macOS dash
 
 ## Testing
 For testing purposes in Mac, it will be best to use [UTM](https://getutm.app) and setup an environment similar to your own for macOS:

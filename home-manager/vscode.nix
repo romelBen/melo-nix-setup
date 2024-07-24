@@ -29,7 +29,6 @@ in
     matthewpi.caddyfile-support
     prisma.prisma
     phoenixframework.phoenix
-    rust-lang.rust-analyzer
     tamasfe.even-better-toml
     thenuprojectcontributors.vscode-nushell-lang
     unifiedjs.vscode-mdx
@@ -66,10 +65,6 @@ in
       "editor.defaultFormatter" = "B4dM4n.nixpkgs-fmt";
       "editor.formatOnSave" = true;
     };
-    "[rust]" = {
-      "editor.defaultFormatter" = "rust-lang.rust-analyzer";
-      "editor.formatOnSave" = true;
-    };
     "[toml]" = {
       "editor.defaultFormatter" = "tamasfe.even-better-toml";
       "editor.formatOnSave" = true;
@@ -84,7 +79,6 @@ in
       "dist" = true;
       "tmp" = true;
     };
-    "rust-analyzer.server.path" = "rust-analyzer";
     # "editor.defaultFormatter" = "esbenp.prettier-vscode";
     "terminal.integrated.fontFamily" = terminalFont;
     "workbench.colorTheme" = colorTheme;
