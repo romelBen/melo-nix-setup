@@ -3,14 +3,14 @@
   description = "Nome: my Nix home";
 
   inputs = {
-    fenix = { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    fenix  { url = "https://flakehub.com/f/nix-community/fenix/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     fh = { url = "https://flakehub.com/f/DeterminateSystems/fh/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-checker = { url = "https://flakehub.com/f/DeterminateSystems/flake-checker/*"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1.*";
-    home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2311.*"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nix.url = "https://flakehub.com/f/DeterminateSystems/nix/=2.23.3";
+    home-manager = { url = "https://flakehub.com/f/nix-community/home-manager/0.2405.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-darwin = { url = "github:LnL7/nix-darwin"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2311.*";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2405.*";
     nuenv = { url = "https://flakehub.com/f/DeterminateSystems/nuenv/0.1.*"; inputs.nixpkgs.follows = "nixpkgs"; };
     uuidv7 = { url = "git+ssh://git@github.com/DeterminateSystems/uuidv7.git"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
@@ -25,7 +25,7 @@
         };
       });
 
-      stateVersion = "23.11";
+      stateVersion = "24.05";
       system = "aarch64-darwin";
       username = "romelbenavides";
       caches = {
@@ -40,14 +40,15 @@
       };
     in
     {
-      schemas = inputs.flake-schemas.schemas;
+      inherit (inputs.flake-schemas) schemas;
 
       devShells = forEachSupportedSystem ({ pkgs }: {
         default =
           let
             reload = pkgs.writeScriptBin "reload" ''
+              # CONFIG_NAME=$(scutil --get LocalHostName)
               FLAKE_OUTPUT=".#darwinConfigurations.${username}-${system}.system"
-              ${pkgs.nixFlakes}/bin/nix build "''${FLAKE_OUTPUT}" && \
+              nix build "''${FLAKE_OUTPUT}" && \
                 ./result/sw/bin/darwin-rebuild activate && \
                 ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
             '';
@@ -76,7 +77,12 @@
       darwinConfigurations."${username}-${system}" = inputs.nix-darwin.lib.darwinSystem {
         inherit system;
         modules = [
-          inputs.nix.darwinModules.default
+          inputs.determinate.darwinModules.default
+
+          {
+            determinate.nix.primaryUser.username = username;
+          }
+
           inputs.self.darwinModules.base
           inputs.self.darwinModules.caching
           inputs.home-manager.darwinModules.home-manager
