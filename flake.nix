@@ -45,8 +45,8 @@
         default =
           let
             reload = pkgs.writeScriptBin "reload" ''
-              # CONFIG_NAME=$(scutil --get LocalHostName)
-              FLAKE_OUTPUT=".#darwinConfigurations.${username}-${system}.system"
+              CONFIG_NAME=$(scutil --get LocalHostName)
+              FLAKE_OUTPUT=".#darwinConfigurations.''${CONFIG_NAME}.system"
               nix build "''${FLAKE_OUTPUT}" && \
                 ./result/sw/bin/darwin-rebuild activate && \
                 ${pkgs.zsh}/bin/zsh -c "source ${pkgs.homeDirectory}/.zshrc"
