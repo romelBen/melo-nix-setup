@@ -3,6 +3,10 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
+# asdf setup PATHing
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/completions/asdf.bash"
+
 # Run the env.sh script (if it exists). That script is meant to contain secrets, tokens, and
 # other things you don't want to put in your Nix config. This is quite "impure" but a
 # reasonable workaround.

@@ -16,6 +16,7 @@ let
 
   buildTools = with pkgs; [
     cmake
+    asdf-vm
   ];
 
   databaseTools = with pkgs; [
